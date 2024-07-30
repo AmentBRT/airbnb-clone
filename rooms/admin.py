@@ -79,11 +79,11 @@ class RoomAdmin(admin.ModelAdmin):
     search_fields = ['city', '^host__username']
     filter_horizontal = ['amenities', 'facilities', 'house_rules']
 
-    @admin.display(ordering='amenities__count')
+    @admin.display(ordering='amenities')
     def amenities_count(self, obj: models.Room):
         return obj.amenities.count()
 
-    @admin.display(ordering='photos__count')
+    @admin.display(ordering='photos')
     def photos_count(self, obj: models.Room):
         return obj.photos.count()
 
