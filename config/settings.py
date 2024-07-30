@@ -44,7 +44,9 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = []
 
 # Apps from the project
-PROJECT_APPS = []
+PROJECT_APPS = [
+    'users',
+]
 
 # All apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
@@ -131,3 +133,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Substituting a custom User model
+# https://docs.djangoproject.com/en/5.0/topics/auth/customizing/#substituting-a-custom-user-model
+
+AUTH_USER_MODEL = 'users.User'
