@@ -49,6 +49,7 @@ THIRD_PARTY_APPS = [
 PROJECT_APPS = [
     'core',
     'users',
+    'reviews',
     'rooms',
 ]
 
