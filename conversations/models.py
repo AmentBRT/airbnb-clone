@@ -6,7 +6,11 @@ from users import models as users_models
 class Conversation(core_models.TimeStampedModel):
     """Conversation Model"""
 
-    participants = models.ManyToManyField(users_models.User, blank=True)
+    participants = models.ManyToManyField(
+        users_models.User,
+        related_name='conversations',
+        blank=True,
+    )
 
     def __str__(self) -> str:
         return str(self.created_at)
@@ -15,8 +19,16 @@ class Conversation(core_models.TimeStampedModel):
 class Message(core_models.TimeStampedModel):
     """Message Model"""
 
-    user = models.ForeignKey(users_models.User, on_delete=models.CASCADE)
-    conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        users_models.User,
+        on_delete=models.CASCADE,
+        related_name='messages',
+    )
+    conversation = models.ForeignKey(
+        Conversation,
+        on_delete=models.CASCADE,
+        related_name='messages',
+    )
     message = models.TextField()
 
     def __str__(self) -> str:

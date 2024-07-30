@@ -47,11 +47,20 @@ class HouseRule(AbstractItem):
 class Room(core_models.TimeStampedModel):
     """Room Model"""
 
-    host = models.ForeignKey(users_models.User, on_delete=models.CASCADE)
-    room_type = models.ForeignKey(RoomType, on_delete=models.SET_NULL, null=True)
-    amenities = models.ManyToManyField(Amenity, blank=True)
-    facilities = models.ManyToManyField(Facility, blank=True)
-    house_rules = models.ManyToManyField(HouseRule, blank=True)
+    host = models.ForeignKey(
+        users_models.User,
+        on_delete=models.CASCADE,
+        related_name='rooms',
+    )
+    room_type = models.ForeignKey(
+        RoomType,
+        on_delete=models.SET_NULL,
+        related_name='rooms',
+        null=True,
+    )
+    amenities = models.ManyToManyField(Amenity, related_name='rooms', blank=True)
+    facilities = models.ManyToManyField(Facility, related_name='rooms', blank=True)
+    house_rules = models.ManyToManyField(HouseRule, related_name='rooms', blank=True)
     name = models.CharField(max_length=140)
     description = models.TextField()
     country = countries_fields.CountryField()
@@ -73,7 +82,7 @@ class Room(core_models.TimeStampedModel):
 class Photo(core_models.TimeStampedModel):
     """Photo Model"""
 
-    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='photos')
     caption = models.CharField(max_length=80)
     file = models.ImageField()
 

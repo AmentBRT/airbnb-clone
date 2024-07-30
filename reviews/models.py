@@ -7,8 +7,16 @@ from rooms import models as rooms_models
 class Review(core_models.TimeStampedModel):
     """Review Model"""
 
-    user = models.ForeignKey(users_models.User, on_delete=models.SET_NULL, null=True)
-    room = models.ForeignKey(rooms_models.Room, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        users_models.User,
+        on_delete=models.CASCADE,
+        related_name='reviews',
+    )
+    room = models.ForeignKey(
+        rooms_models.Room,
+        on_delete=models.CASCADE,
+        related_name='reviews',
+    )
     review = models.TextField()
     accuracy = models.PositiveSmallIntegerField()
     communication = models.PositiveSmallIntegerField()
