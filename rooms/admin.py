@@ -2,24 +2,15 @@ from django.contrib import admin
 from . import models
 
 
-@admin.register(models.RoomType)
-class RoomTypeAdmin(admin.ModelAdmin):
-    """Room Type Admin Model"""
+@admin.register(models.RoomType, models.Amenity, models.Facility, models.HouseRule)
+class ItemAdmin(admin.ModelAdmin):
+    """Item Admin Model"""
 
+    list_display = ['name', 'used_by']
 
-@admin.register(models.Amenity)
-class AmenityAdmin(admin.ModelAdmin):
-    """Amenity Admin Model"""
-
-
-@admin.register(models.Facility)
-class FacilityAdmin(admin.ModelAdmin):
-    """Facility Admin Model"""
-
-
-@admin.register(models.HouseRule)
-class HouseRule(admin.ModelAdmin):
-    """House Rule Admin Model"""
+    @admin.display(ordering='rooms')
+    def used_by(self, obj):
+        return obj.rooms.count()
 
 
 @admin.register(models.Room)
