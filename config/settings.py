@@ -48,6 +48,7 @@ THIRD_PARTY_APPS = [
 # Apps from the project
 PROJECT_APPS = [
     'core',
+    'conversations',
     'lists',
     'reservations',
     'reviews',
