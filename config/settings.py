@@ -48,10 +48,11 @@ THIRD_PARTY_APPS = [
 # Apps from the project
 PROJECT_APPS = [
     'core',
-    'users',
+    'lists',
     'reservations',
     'reviews',
     'rooms',
+    'users',
 ]
 
 # All apps
