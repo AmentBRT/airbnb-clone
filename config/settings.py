@@ -41,12 +41,15 @@ DJANGO_APPS = [
 ]
 
 # Apps from third parties
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = [
+    'django_countries',
+]
 
 # Apps from the project
 PROJECT_APPS = [
     'core',
     'users',
+    'rooms',
 ]
 
 # All apps
