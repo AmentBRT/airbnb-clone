@@ -1,3 +1,4 @@
+from typing import Any
 from django.db import models
 from django_countries import fields as countries_fields
 from core import models as core_models
@@ -83,6 +84,10 @@ class Room(core_models.TimeStampedModel):
 
     def __str__(self) -> str:
         return self.name
+
+    def save(self, *args: Any, **kwargs: Any) -> None:
+        self.city = self.city.capitalize()
+        super().save(*args, **kwargs)
 
 
 class Photo(core_models.TimeStampedModel):
