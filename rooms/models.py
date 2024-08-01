@@ -75,6 +75,12 @@ class Room(core_models.TimeStampedModel):
     check_out = models.TimeField()
     instant_book = models.BooleanField(default=False)
 
+    def total_rating(self) -> float:
+        reviews = self.reviews.all()
+        ratings = map(lambda r: r.rating_average(), reviews)
+        avg = sum(ratings) / len(reviews)
+        return round(avg, 2)
+
     def __str__(self) -> str:
         return self.name
 
