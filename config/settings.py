@@ -146,3 +146,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # https://docs.djangoproject.com/en/5.0/topics/auth/customizing/#substituting-a-custom-user-model
 
 AUTH_USER_MODEL = 'users.User'
+
+# Media root
+# https://docs.djangoproject.com/en/5.0/ref/settings/#media-root
+
+MEDIA_ROOT = BASE_DIR / 'uploads'
+
+# Media URL
+# https://docs.djangoproject.com/en/5.0/ref/settings/#media-url
+
+MEDIA_URL = 'media/'
