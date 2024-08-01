@@ -9,7 +9,7 @@ class ItemAdmin(admin.ModelAdmin):
     list_display = ['name', 'used_by']
 
     @admin.display(ordering='rooms')
-    def used_by(self, obj):
+    def used_by(self, obj) -> int:
         return obj.rooms.count()
 
 
@@ -72,11 +72,11 @@ class RoomAdmin(admin.ModelAdmin):
     filter_horizontal = ['amenities', 'facilities', 'house_rules']
 
     @admin.display(ordering='amenities')
-    def amenities_count(self, obj: models.Room):
+    def amenities_count(self, obj: models.Room) -> int:
         return obj.amenities.count()
 
     @admin.display(ordering='photos')
-    def photos_count(self, obj: models.Room):
+    def photos_count(self, obj: models.Room) -> int:
         return obj.photos.count()
 
 
