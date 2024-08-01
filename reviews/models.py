@@ -25,5 +25,17 @@ class Review(core_models.TimeStampedModel):
     check_in = models.PositiveSmallIntegerField()
     value = models.PositiveSmallIntegerField()
 
+    def rating_average(self) -> float:
+        ratings = (
+            self.accuracy,
+            self.communication,
+            self.cleanliness,
+            self.location,
+            self.check_in,
+            self.value,
+        )
+        avg = sum(ratings) / len(ratings)
+        return round(avg, 2)
+
     def __str__(self) -> str:
         return f'{self.review} - {self.room}'
