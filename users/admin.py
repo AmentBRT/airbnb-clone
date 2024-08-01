@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User
+from . import models
 
 
-@admin.register(User)
+@admin.register(models.User)
 class UserAdmin(BaseUserAdmin):
     """Custom User Admin Model"""
 
@@ -23,3 +23,16 @@ class UserAdmin(BaseUserAdmin):
             },
         ),
     )
+    list_display = [
+        'username',
+        'first_name',
+        'last_name',
+        'email',
+        'is_active',
+        'language',
+        'currency',
+        'superhost',
+        'is_staff',
+        'is_superuser',
+    ]
+    list_filter = BaseUserAdmin.list_filter + ('superhost',)
