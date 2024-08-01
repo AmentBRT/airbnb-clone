@@ -43,6 +43,7 @@ DJANGO_APPS = [
 # Apps from third parties
 THIRD_PARTY_APPS = [
     'django_countries',
+    'django_seed',
 ]
 
 # Apps from the project
