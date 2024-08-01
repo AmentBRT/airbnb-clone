@@ -18,7 +18,7 @@ class User(AbstractUser):
         USD = 'usd', 'USD'
         IRR = 'irr', 'Iran Rial'
 
-    avatar = models.ImageField(null=True, blank=True, default=None)
+    avatar = models.ImageField(upload_to='avatars', null=True, blank=True, default=None)
     gender = models.CharField(
         max_length=1,
         choices=Gender,
