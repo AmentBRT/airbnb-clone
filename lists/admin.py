@@ -5,3 +5,11 @@ from . import models
 @admin.register(models.List)
 class ListAdmin(admin.ModelAdmin):
     """List Admin Model"""
+
+    list_display = ['name', 'user', 'count_rooms']
+    search_fields = ['name']
+    filter_horizontal = ['rooms']
+
+    @admin.display(description='Number of Rooms')
+    def count_rooms(self, obj: models.List) -> int:
+        return obj.count_rooms()
