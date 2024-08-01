@@ -78,6 +78,8 @@ class Room(core_models.TimeStampedModel):
 
     def total_rating(self) -> float:
         reviews = self.reviews.all()
+        if reviews.count() == 0:
+            return 0.0
         ratings = map(lambda r: r.rating_average(), reviews)
         avg = sum(ratings) / len(reviews)
         return round(avg, 2)
