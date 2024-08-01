@@ -8,6 +8,7 @@ class ItemAdmin(admin.ModelAdmin):
     """Item Admin Model"""
 
     list_display = ['name', 'used_by']
+    search_fields = ['name']
 
     @admin.display(ordering='rooms')
     def used_by(self, obj) -> int:
@@ -78,7 +79,7 @@ class RoomAdmin(admin.ModelAdmin):
     ]
     search_fields = ['city', '^host__username']
     filter_horizontal = ['amenities', 'facilities', 'house_rules']
-    autocomplete_fields = ['host']
+    autocomplete_fields = ['host', 'room_type']
 
     @admin.display(ordering='amenities')
     def amenities_count(self, obj: models.Room) -> int:
@@ -94,6 +95,7 @@ class PhotoAdmin(admin.ModelAdmin):
     """Photo Admin Model"""
 
     list_display = ['__str__', 'get_thumbnail']
+    autocomplete_fields = ['room']
 
     @admin.display(description='Thumbnail')
     def get_thumbnail(self, obj: models.Photo) -> str:

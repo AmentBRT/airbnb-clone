@@ -8,6 +8,7 @@ class ConversationAdmin(admin.ModelAdmin):
 
     list_display = ['__str__', 'count_messages', 'count_participants']
     filter_horizontal = ['participants']
+    search_fields = ['participants']
 
     @admin.display(description='Number of Messages')
     def count_messages(self, obj: models.Conversation) -> int:
@@ -23,3 +24,4 @@ class MessageAdmin(admin.ModelAdmin):
     """Message Admin Model"""
 
     list_display = ['__str__', 'created_at']
+    autocomplete_fields = ['user', 'conversation']

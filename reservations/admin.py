@@ -16,6 +16,7 @@ class ReservationAdmin(admin.ModelAdmin):
         'is_finished',
     ]
     list_filter = ['status']
+    autocomplete_fields = ['guest', 'room']
 
     @admin.display(boolean=True)
     def in_progress(self, obj: models.Reservation) -> bool:
