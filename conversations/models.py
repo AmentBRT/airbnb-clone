@@ -12,8 +12,16 @@ class Conversation(core_models.TimeStampedModel):
         blank=True,
     )
 
+    def count_messages(self) -> int:
+        return self.messages.count()
+
+    def count_participants(self) -> int:
+        return self.participants.count()
+
     def __str__(self) -> str:
-        return str(self.created_at)
+        users = self.participants.all()
+        usernames = map(lambda u: u.username, users)
+        return ', '.join(usernames)
 
 
 class Message(core_models.TimeStampedModel):
